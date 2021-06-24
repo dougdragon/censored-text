@@ -1,5 +1,5 @@
 # censored text application
-This application has 2 textareas; one for the string and the second for keywords and phrases to censor the string on. After submitting the form, the string with censored keywords/phrases replaced with a series of "X"'s is displayed below the form.
+This application has 2 textareas; one for the string and the second for keywords and phrases to censor the string on. After submitting the form, the string with censored keywords/phrases replaced with a series of `X`'s is displayed below the form.
 
 ## Available Scripts
 
