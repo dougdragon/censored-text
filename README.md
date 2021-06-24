@@ -1,5 +1,5 @@
 # censored text application
-Receives input from a textarea element and returns the string with censored text contained in quotes (single and double) replaced by "x".
+This application has 2 textareas; one for the string and the second for keywords and phrases to censor the string on. After submitting the form, the string with censored keywords/phrases replaced with a series of "X"'s is displayed below the form.
 
 ## Available Scripts
 
@@ -14,10 +14,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
