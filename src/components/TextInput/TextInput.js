@@ -1,37 +1,69 @@
 import React, { useState } from "react";
-import "./TextInput.css";
+import censorString from "../../utils/censorString";
+import useFocus from "../../hooks/useFocus";
 
 const TextInput = () => {
   const [textAreaValue, setTextAreaValue] = useState("");
+  const [keywordsValue, setKeywordsValue] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [inputRef, setInputFocus] = useFocus();
 
   const handleSubmit = event => {
     event.preventDefault();
+    setTextAreaValue(censorString(textAreaValue, keywordsValue))
     setIsSubmitted(true);
-    setTextAreaValue(transformText(textAreaValue))
-    console.log(`submitting the following text ${textAreaValue}`);
   }
 
   const handleReset = () => {
     setTextAreaValue("");
-  }
-
-  const transformText = originalText => {
-    const myRegex = /['"]((?:\\.|[^'\\])*)["']/g;
-    return originalText.replace(myRegex, "XXXXX");
+    setIsSubmitted(false);
+    setInputFocus();
   }
 
   return (
     <>
-      <div className="wrapper">
-        <form onSubmit={handleSubmit}>
-          <label>Text input:</label>
-          <textarea onChange={e => setTextAreaValue(e.target.value)} />
-          <button type="submit">Save</button>
-          <button type="reset" onClick={handleReset}>Reset</button>
+      <div className="wrapper uk-margin-top uk-margin-left">
+        <form className="uk-form-horizontal uk-margin-large" onSubmit={handleSubmit}>
+          <div className="uk-margin">
+            <fieldset className="uk-fieldset">
+              <label>Text input:</label>
+              <textarea
+                className="uk-textarea uk-margin-bottom"
+                placeholder="Enter the string to be censored"
+                onChange={e => setTextAreaValue(e.target.value)}
+                autoFocus={true}
+                ref={inputRef}
+              />
+              <label>Keywords and phrases</label>
+              <textarea
+                className="uk-textarea"
+                placeholder="Enter keywords and/or phrases wrapped in quotes (single or double) to be censored"
+                onChange={e => setKeywordsValue(e.target.value)}
+              />
+            </fieldset>
+          </div>
+          <div className="uk-margin">
+            <button
+              className="uk-button uk-button-primary"
+              type="submit"
+            >
+              Submit
+            </button>
+            <button
+              className="uk-button uk-button-secondary uk-margin-left"
+              type="reset"
+              onClick={handleReset}
+            >
+              Reset
+            </button>
+          </div>
         </form>
       </div>
-      {isSubmitted && textAreaValue && <p>Output: <strong>{textAreaValue}</strong></p>}
+      {isSubmitted && textAreaValue &&
+        <div className="uk-text-large">
+          <p>Output: <span className="uk-text-bold">{textAreaValue}</span></p>
+        </div>
+      }
     </>
   );
 }
