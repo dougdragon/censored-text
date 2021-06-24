@@ -5,9 +5,9 @@ This application has 2 textareas; one for the string and the second for keywords
 
 In the project directory, you can run:
 
-### `yarn start`
+### `yarn && yarn start`
 
-Runs the app in the development mode.\
+Installs the dependencies and runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### `yarn test`
